@@ -1,0 +1,89 @@
+CREATE TABLE `batches` (
+ `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ `started_by` int(11),
+ `created_at` timestamp,
+ `updated_at` timestamp,
+ `closed_at`  timestamp,
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ `closed_by`  int(11),
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `consignments` (
+ `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ `consignment_id` varchar(255) NOT NULL,
+ `batch_id` int(11) NOT NULL,
+ `created_by` int(11) NOT NULL,
+ `courier_id` int(11) NOT NULL,
+ `created_at` timestamp NULL DEFAULT NULL,
+ `updated_at` timestamp NULL DEFAULT NULL,
+ `dispatched_at` timestamp NULL DEFAULT NULL,
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `couriers` (
+ `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ `courier_name` varchar(100),
+ `created_at` timestamp NULL DEFAULT NULL,
+ `updated_at` timestamp NULL DEFAULT NULL,
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `customers` (
+ `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ `first_name` varchar(100),
+ `last_name` varchar(100),
+ `email` varchar(255),
+ `phone` varchar(255),
+ `created_at` timestamp NULL DEFAULT NULL,
+ `updated_at` timestamp NULL DEFAULT NULL,
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `customer_address` (
+ `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ `customer_id` int(11),
+ `address_type` varchar(20),
+ `address_1` varchar(100),
+ `address_2` varchar(100),
+ `address_3` varchar(100),
+ `state` varchar(255),
+ `post_code` varchar(20),
+ `country` varchar(255),
+ `created_at` timestamp NULL DEFAULT NULL,
+ `updated_at` timestamp NULL DEFAULT NULL,
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+INSERT INTO `couriers` (`courier_name`, `created_at`, `updated_at`) 
+VALUES 
+('Royal Mail', NOW(),NOW()),
+('ANC', NOW(),NOW())
+
+
+INSERT INTO `customers` (`first_name`, `last_name`, `email`, `phone`, `created_at`, `updated_at`) 
+VALUES 
+('Muhammad', 'Ali', 'muhammad.ali@freespirit.com', '(001) 111 222 333', NOW(),NOW()),
+('Malcolm', 'X', 'malcolm.x@leader.com', '(001) 222 333 444', NOW(),NOW()),
+('Martin', 'Luther King', 'martin.lutherking@dreamer.com', '(001) 333 444 555', NOW(),NOW()),
+('Sidney', 'Poitier', 'sidney.poitier@achiever.com', '(001) 444 555 666', NOW(),NOW())
+
+
+INSERT INTO `customer_address` (`customer_id`, `address_type`, `address_1`, `address_2`, `address_3`, `State`, `post_code`, `country`, `created_at`, `updated_at`) 
+VALUES 
+(1, 'Shipping', '10 Victory Road', 'San Francisco', '', 'California', '1SF CA', 'USA', NOW(),NOW()),
+(2, 'Shipping', '20 Passion Endless', 'Clear Creek', '', 'Utah', '2PE CC', 'USA', NOW(),NOW()),
+(3, 'Shipping', '30 Dream Close', 'Levenshulme', '', 'Manchester', 'M19 LS', 'UK', NOW(),NOW()),
+(4, 'Shipping', '40 Celeb Way', 'Sount End', '', 'London', 'SE1 LN', 'UK', NOW(),NOW())

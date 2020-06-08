@@ -1,0 +1,27 @@
+{
+    "name": "kamran/order-dispatch",
+    "authors": [
+        {
+            "name": "kamran ullah",
+            "email": "kamranullah@hotmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^7.14"
+    },
+
+    "autoload" : {
+
+    	"psr-4": {
+    		"Controllers\\": "app/controllers/",
+    		"Models\\": "app/models/",
+    		"Services\\": "app/services/",
+            "Core\\": "app/core/"
+    	},
+
+    	"files": [
+    		"config/db.php",
+            "app/helpers.php"
+    	]
+    }
+}
